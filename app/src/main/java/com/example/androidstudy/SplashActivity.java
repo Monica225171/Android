@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //不带数据的界面跳转
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this,TopActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();
             }

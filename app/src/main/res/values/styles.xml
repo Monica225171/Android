@@ -17,6 +17,7 @@
         <item name="windowNoTitle">true</item>
 
         <item name="colorControlNormal">@android:color/white</item>
+        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
     </style>
 
     <style name="toolbar.style" parent="ThemeOverlay.AppCompat.ActionBar">
@@ -29,7 +30,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:button">@null</item>
-        <!--<item name="android:textColor">@color/main_rb_font</item>-->
+        <item name="android:textColor">@drawable/selector_my_button</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 

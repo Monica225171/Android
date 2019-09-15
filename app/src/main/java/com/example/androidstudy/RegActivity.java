@@ -56,11 +56,15 @@ public class RegActivity extends AppCompatActivity {
                     Toast.makeText(RegActivity.this,"密码不能为空",Toast.LENGTH_LONG).show();
                 }else if (!password.equals(pwdAgain)){
                     Toast.makeText(RegActivity.this,"两次密码必须一致",Toast.LENGTH_LONG).show();
+                }else if(isExist(username)){
+                    Toast.makeText(RegActivity.this,"此用户已存在",Toast.LENGTH_LONG).show();
                 }else {
                     savePref(username, MD5Utils.md5(password));
-                    Intent intent = new Intent(RegActivity.this,MainActivity.class);
+                    Intent intent = new Intent();
                     intent.putExtra("username",username);
-                    startActivity(intent);
+                    setResult(RESULT_OK,intent);
+                    finish();
+//                    startActivityForResult(intent,1);
                 }
             }
         });
@@ -68,9 +72,18 @@ public class RegActivity extends AppCompatActivity {
 
     private void savePref(String username, String password) {
         SharedPreferences.Editor editor = getSharedPreferences("userInfo",MODE_PRIVATE).edit();
-        editor.putString("username",username);
-        editor.putString("password",password);
+//        editor.putString("username",username);
+//        editor.putString("password",password);
+        editor.putString(username, password);
         editor.apply();
+//        editor.clear();
+//        editor.commit();
+    }
+
+    private boolean isExist(String username){
+        SharedPreferences sp = getSharedPreferences("userInfo",MODE_PRIVATE);
+        String pwd = sp.getString(username,"");
+        return !TextUtils.isEmpty(pwd);
     }
 
     private void initView() {
